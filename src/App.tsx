@@ -1,12 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { PowerEtentLogo } from "@/components/PowerEtentLogo";
 import { PowerEtentDevice } from "@/components/PowerEtentDevice";
 import { WaitlistForm } from "@/components/WaitlistForm";
-
-export const Route = createFileRoute("/")({
-  component: LandingPage,
-});
 
 const NAV = [
   { href: "#how", label: "How It Works" },
@@ -15,7 +10,7 @@ const NAV = [
   { href: "#contact", label: "Contact" },
 ];
 
-function LandingPage() {
+export default function App() {
   return (
     <div id="top" className="min-h-screen bg-background text-foreground">
       <Nav />
@@ -34,7 +29,6 @@ function LandingPage() {
   );
 }
 
-/* ---------------------------------- NAV ---------------------------------- */
 function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -110,7 +104,6 @@ function Nav() {
   );
 }
 
-/* --------------------------------- HERO ---------------------------------- */
 function Hero() {
   return (
     <section className="relative overflow-hidden" style={{ background: "var(--gradient-outage)" }}>
@@ -165,27 +158,11 @@ function Hero() {
   );
 }
 
-/* -------------------------------- PROBLEM -------------------------------- */
 function Problem() {
   const stats = [
-    {
-      k: "< 12 hrs",
-      title: "of grid electricity per day",
-      body:
-        "The average Nigerian household lives with fewer than half a day of reliable power — and the outages don't announce themselves.",
-    },
-    {
-      k: "1 cut",
-      title: "= a dropped call, a lost draft, a router reboot",
-      body:
-        "Most outages hit in the middle of something that mattered. Your work resets. Your customer waits. Your day starts over.",
-    },
-    {
-      k: "2 options",
-      title: "generators or lose the work",
-      body:
-        "The alternatives are a loud, expensive generator that needs fuel — or accepting the interruption as part of life. Neither is fine.",
-    },
+    { k: "< 12 hrs", title: "of grid electricity per day", body: "The average Nigerian household lives with fewer than half a day of reliable power — and the outages don't announce themselves." },
+    { k: "1 cut", title: "= a dropped call, a lost draft, a router reboot", body: "Most outages hit in the middle of something that mattered. Your work resets. Your customer waits. Your day starts over." },
+    { k: "2 options", title: "generators or lose the work", body: "The alternatives are a loud, expensive generator that needs fuel — or accepting the interruption as part of life. Neither is fine." },
   ];
   return (
     <section className="border-y border-border bg-surface">
@@ -210,33 +187,12 @@ function Problem() {
   );
 }
 
-/* ------------------------------ HOW IT WORKS ----------------------------- */
 function HowItWorks() {
   const steps = [
-    {
-      n: "01",
-      title: "Plug it in like any extension cord",
-      body:
-        "PowerEtent lives on your desk or under your TV. It powers your devices and quietly charges its internal battery in the background.",
-    },
-    {
-      n: "02",
-      title: "The battery stops at 100% — automatically",
-      body:
-        "A built-in Battery Management System cuts off charging at full, protecting cell health so the pack still performs a year in.",
-    },
-    {
-      n: "03",
-      title: "Power cuts. You keep working.",
-      body:
-        "An auto-switch relay flips to battery in under 10 milliseconds — faster than any device on your desk can notice. No flicker, no reboot, no dropped video call.",
-    },
-    {
-      n: "04",
-      title: "Power returns, silently",
-      body:
-        "PowerEtent switches back to grid and starts refilling the battery. You didn't have to do anything. That's the whole point.",
-    },
+    { n: "01", title: "Plug it in like any extension cord", body: "PowerEtent lives on your desk or under your TV. It powers your devices and quietly charges its internal battery in the background." },
+    { n: "02", title: "The battery stops at 100% — automatically", body: "A built-in Battery Management System cuts off charging at full, protecting cell health so the pack still performs a year in." },
+    { n: "03", title: "Power cuts. You keep working.", body: "An auto-switch relay flips to battery in under 10 milliseconds — faster than any device on your desk can notice. No flicker, no reboot, no dropped video call." },
+    { n: "04", title: "Power returns, silently", body: "PowerEtent switches back to grid and starts refilling the battery. You didn't have to do anything. That's the whole point." },
   ];
   return (
     <section id="how" className="relative">
@@ -255,16 +211,13 @@ function HowItWorks() {
         <ol className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {steps.map((s) => (
             <li key={s.n} className="panel p-6 relative">
-              <span className="font-display text-sm font-semibold tracking-[0.2em] text-amber">
-                {s.n}
-              </span>
+              <span className="font-display text-sm font-semibold tracking-[0.2em] text-amber">{s.n}</span>
               <h3 className="mt-3 font-display text-lg font-semibold text-paper">{s.title}</h3>
               <p className="mt-3 text-sm text-paper-dim">{s.body}</p>
             </li>
           ))}
         </ol>
 
-        {/* The switchover moment */}
         <div className="mt-14 panel p-8 sm:p-10 flex flex-col items-center text-center">
           <span className="eyebrow">The moment</span>
           <div className="mt-6 flex items-center justify-center gap-4 sm:gap-6">
@@ -286,9 +239,8 @@ function HowItWorks() {
   );
 }
 
-/* --------------------------------- SPECS --------------------------------- */
 function Specs() {
-  const rows = [
+  const rows: [string, string][] = [
     ["Battery", "15–20 Wh lithium pack with BMS (auto-cutoff at 100%)"],
     ["Runtime", "~20 minutes at 40–50 W (router + laptop charger)"],
     ["Switchover", "Under 10 ms — no flicker, no dropped connection"],
@@ -331,30 +283,11 @@ function Specs() {
   );
 }
 
-/* ----------------------------- WHY POWERETENT ---------------------------- */
 function WhyPowerEtent() {
   const cols = [
-    {
-      name: "Generator",
-      rows: ["Loud", "Needs fuel", "Outdoor install", "Manual start", "Expensive to run"],
-      tone: "muted" as const,
-    },
-    {
-      name: "Traditional UPS",
-      rows: ["Bulky beige box", "Technical setup", "Beeps loudly", "Bad user experience", "Mostly ignored"],
-      tone: "muted" as const,
-    },
-    {
-      name: "PowerEtent",
-      rows: [
-        "Looks like an extension cord",
-        "Silent, always on",
-        "Plug-and-play",
-        "<10ms auto-switchover",
-        "Priced for daily life",
-      ],
-      tone: "amber" as const,
-    },
+    { name: "Generator", rows: ["Loud", "Needs fuel", "Outdoor install", "Manual start", "Expensive to run"], tone: "muted" as const },
+    { name: "Traditional UPS", rows: ["Bulky beige box", "Technical setup", "Beeps loudly", "Bad user experience", "Mostly ignored"], tone: "muted" as const },
+    { name: "PowerEtent", rows: ["Looks like an extension cord", "Silent, always on", "Plug-and-play", "<10ms auto-switchover", "Priced for daily life"], tone: "amber" as const },
   ];
   return (
     <section className="relative">
@@ -369,16 +302,10 @@ function WhyPowerEtent() {
           {cols.map((c) => (
             <div
               key={c.name}
-              className={`panel p-6 ${
-                c.tone === "amber" ? "border-amber/40 shadow-[0_0_0_1px_var(--amber)/0.15]" : ""
-              }`}
+              className={`panel p-6 ${c.tone === "amber" ? "border-amber/40 shadow-[0_0_0_1px_var(--amber)/0.15]" : ""}`}
             >
               <div className="flex items-center justify-between">
-                <h3
-                  className={`font-display text-lg font-semibold ${
-                    c.tone === "amber" ? "text-amber" : "text-paper"
-                  }`}
-                >
+                <h3 className={`font-display text-lg font-semibold ${c.tone === "amber" ? "text-amber" : "text-paper"}`}>
                   {c.name}
                 </h3>
                 {c.tone === "amber" && (
@@ -389,9 +316,7 @@ function WhyPowerEtent() {
                 {c.rows.map((r) => (
                   <li key={r} className="flex items-start gap-2 text-sm text-paper-dim">
                     <span
-                      className={`mt-2 h-1.5 w-1.5 shrink-0 rounded-full ${
-                        c.tone === "amber" ? "bg-amber" : "bg-border-strong"
-                      }`}
+                      className={`mt-2 h-1.5 w-1.5 shrink-0 rounded-full ${c.tone === "amber" ? "bg-amber" : "bg-border-strong"}`}
                       aria-hidden
                     />
                     <span className={c.tone === "amber" ? "text-paper" : ""}>{r}</span>
@@ -406,26 +331,12 @@ function WhyPowerEtent() {
   );
 }
 
-/* ------------------------ BUILT FOR REAL CONDITIONS ---------------------- */
 function BuiltForRealConditions() {
   const items = [
-    {
-      title: "Flame-retardant casing",
-      body: "V-0 rated polymer housing. If something goes wrong upstream, PowerEtent won't make it worse.",
-    },
-    {
-      title: "Surge + overload protection",
-      body: "MOV-based surge suppression and overload cutoff protect the pack — and everything plugged into it.",
-    },
-    {
-      title: "Certification path in-country",
-      body: "SONCAP (Nigeria), KEBS (Kenya), Ghana Standards Authority testing planned pre-launch.",
-    },
-    {
-      title: "Designed for African grid patterns",
-      body:
-        "Sized around the brief fluctuations that make up most outages, not adapted from a Western product built for rare emergencies.",
-    },
+    { title: "Flame-retardant casing", body: "V-0 rated polymer housing. If something goes wrong upstream, PowerEtent won't make it worse." },
+    { title: "Surge + overload protection", body: "MOV-based surge suppression and overload cutoff protect the pack — and everything plugged into it." },
+    { title: "Certification path in-country", body: "SONCAP (Nigeria), KEBS (Kenya), Ghana Standards Authority testing planned pre-launch." },
+    { title: "Designed for African grid patterns", body: "Sized around the brief fluctuations that make up most outages, not adapted from a Western product built for rare emergencies." },
   ];
   return (
     <section className="border-y border-border bg-surface">
@@ -449,7 +360,6 @@ function BuiltForRealConditions() {
   );
 }
 
-/* -------------------------------- PARTNERS ------------------------------- */
 function Partners() {
   return (
     <section id="partners" className="relative">
@@ -496,7 +406,6 @@ function Partners() {
   );
 }
 
-/* -------------------------------- WAITLIST ------------------------------- */
 function Waitlist() {
   return (
     <section
@@ -523,7 +432,6 @@ function Waitlist() {
   );
 }
 
-/* --------------------------------- FOOTER -------------------------------- */
 function Footer() {
   return (
     <footer id="contact" className="bg-background">
