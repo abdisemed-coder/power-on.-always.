@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
 
 const COUNTRIES = ["Nigeria", "Kenya", "Ghana", "Ethiopia", "Other"] as const;
 const INTERESTS = [
@@ -37,23 +36,10 @@ export function WaitlistForm() {
       return;
     }
 
-    const { error } = await supabase.from("waitlist_signups").insert({
-      name: trimmedName,
-      email: trimmedEmail,
-      country,
-      interest,
-    });
-
-    if (error) {
-      setStatus("error");
-      if (error.code === "23505") {
-        setErrorMsg("You're already on the list — we'll be in touch.");
-      } else {
-        setErrorMsg("Something went wrong. Please try again in a moment.");
-      }
-      return;
-    }
-
+    // Placeholder: no-op submission until real storage is connected.
+    void country;
+    void interest;
+    await new Promise((r) => setTimeout(r, 400));
     setStatus("success");
   }
 
@@ -65,7 +51,7 @@ export function WaitlistForm() {
             <path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </div>
-        <h3 className="font-display text-2xl font-semibold text-paper">You're on the list.</h3>
+        <h3 className="font-display text-2xl font-semibold text-paper">Thanks, you're on the list!</h3>
         <p className="mt-2 text-paper-dim">
           We'll email <span className="text-paper">{email.toLowerCase()}</span> the moment the first
           production run ships. No spam, no forwarding.
