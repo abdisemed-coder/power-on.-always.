@@ -77,21 +77,39 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { name: "theme-color", content: "#0F1420" },
+      { title: "PowerEtent — Smart Backup Extension Cord for Power Outages in Nigeria & Africa" },
+      {
+        name: "description",
+        content:
+          "PowerEtent is a smart extension cord with built-in battery backup. When the grid cuts out, your router, laptop and monitor keep running — no UPS bulk, no generator noise. Built for Nigeria, Kenya, Ghana and Ethiopia.",
+      },
+      { name: "author", content: "PowerEtent" },
+      { property: "og:title", content: "PowerEtent — The Lights Go Out. You Don't." },
+      {
+        property: "og:description",
+        content:
+          "A smart backup extension cord for the daily reality of unreliable power. Switches to battery in under 10ms so your work never notices.",
+      },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "PowerEtent" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "PowerEtent — The Lights Go Out. You Don't." },
+      {
+        name: "twitter:description",
+        content:
+          "Smart extension cord with silent battery backup. Built for African power grids.",
+      },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap",
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
   }),
   shellComponent: RootShell,
